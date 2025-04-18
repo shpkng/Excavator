@@ -10,6 +10,14 @@ public class PlatformTool : MonoBehaviour
         this.platform = platform;
     }
 
+    public void Mount()
+    {
+    }
+
+    public void Unmount()
+    {
+    }
+
     public virtual bool IsPositionReachable(Vector3 position)
     {
         return false;
