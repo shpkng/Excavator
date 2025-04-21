@@ -3,11 +3,9 @@ using UnityEngine;
 
 public class PlatformTool : MonoBehaviour
 {
-    protected Excavator platform;
-
     protected void Init(Excavator platform)
     {
-        this.platform = platform;
+        // this.platform = platform;
     }
 
     public void Mount()
