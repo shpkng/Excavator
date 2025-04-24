@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlatformTool : MonoBehaviour
 {
+    public InteractionType allowedInteractions = InteractionType.None; 
+    
     protected void Init(Excavator platform)
     {
         // this.platform = platform;
