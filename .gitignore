@@ -78,3 +78,5 @@ crashlytics-build.properties
 # JetBrains IDE cache directory
 .idea/
 Android Build
+
+/[Aa]ssets/Packages/*
