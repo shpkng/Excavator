@@ -1,13 +1,29 @@
 ﻿using Shapes;
 using UnityEngine;
 
-// 挖掘臂
-public class BSBSystem : PlatformTool
+public enum Mode
 {
-    [SerializeField] private Transform boom, stick, bucket;
+    Bucket = 0,
+    Breaker = 1,
+    Sucker = 2,
+    ToolModeCount
+}
+
+// 挖掘臂
+public class BSBSystem : PlatformEquipment
+{
+    [SerializeField] private Transform boom, stick;
     private int carrying = 0;
 
     private Camera mainCamera;
+
+    [SerializeField] private BSBSystemTool toolBucket,
+        toolSucker,
+        toolBreaker;
+
+    private BSBSystemTool currentTool;
+
+    [SerializeField] private Mode mode;
     [SerializeField] private float speedRot, speedPitch, speedBucketRot;
     [SerializeField] private float lengthBoom, lengthStick;
     [SerializeField] private float maxAngle;
@@ -80,7 +96,8 @@ public class BSBSystem : PlatformTool
         // 鼠标位置在挖掘臂原点平面上的投影
         var shadowPoint = rayToCalculateShadow.GetPoint(enter);
         var directionToShadowPoint = shadowPoint - transform.position;
-        var angle = Mathf.Clamp(Vector3.SignedAngle(transform.parent.forward, directionToShadowPoint, transform.up), -maxAngle,
+        var angle = Mathf.Clamp(Vector3.SignedAngle(transform.parent.forward, directionToShadowPoint, transform.up),
+            -maxAngle,
             maxAngle);
         transform.localEulerAngles = new Vector3(0, angle, 0);
 
@@ -100,6 +117,11 @@ public class BSBSystem : PlatformTool
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            mode = (Mode)(((int)mode + 1) % (int)Mode.ToolModeCount);
+        }
+
         if (true)
         {
             MouseInput();

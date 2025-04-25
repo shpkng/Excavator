@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-public class PlatformTool : MonoBehaviour
+public class PlatformEquipment : MonoBehaviour
 {
-    public InteractionType allowedInteractions = InteractionType.None; 
-    
+    public InteractionType allowedInteractions = InteractionType.None;
+
     protected void Init(Excavator platform)
     {
         // this.platform = platform;

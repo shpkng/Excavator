@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CapsuleGeometry
 {
@@ -17,7 +18,7 @@ public class Excavator : MonoBehaviour
     [SerializeField] private float acceleration = 2;
     [SerializeField] private float drag = 1;
 
-    [SerializeField] private PlatformTool mainTool;
+    [FormerlySerializedAs("mainTool")] [SerializeField] private PlatformEquipment mainEquipment;
 
     private int layerMask = 0;
 
