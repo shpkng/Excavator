@@ -110,7 +110,7 @@ public class BSBSystem : PlatformEquipment
                                            (2 * lengthBoom * length)) * Mathf.Rad2Deg;
         var angleBoomStick = Mathf.Acos((lengthBoom * lengthBoom + lengthStick * lengthStick - length * length) /
                                         (2 * lengthBoom * lengthStick)) * Mathf.Rad2Deg;
-        Debug.Log($"{angleBoomDistance},{angleDistanceForward},{angleBoomStick}");
+        // Debug.Log($"{angleBoomDistance},{angleDistanceForward},{angleBoomStick}");
         boom.localEulerAngles = new Vector3(-(angleBoomDistance - angleDistanceForward), 0, 0);
         stick.localEulerAngles = new Vector3(-angleBoomStick, 0, 0);
     }
