@@ -34,7 +34,7 @@ public class BucketTool : BSBSystemTool
 
         isReleased = !isReleased;
     }
-
+   
     private void OnEnable()
     {
         scanDisposable?.Dispose();
@@ -51,4 +51,4 @@ public class BucketTool : BSBSystemTool
     private void Scan(Unit c)
     {
     }
-}
+} 

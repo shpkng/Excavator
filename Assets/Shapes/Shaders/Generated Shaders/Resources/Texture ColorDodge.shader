@@ -14,15 +14,12 @@ Shader "Shapes/Texture ColorDodge" {
 	SubShader {
 		Tags {
 			"ForceNoShadowCasting" = "True"
-			"RenderPipeline" = "UniversalPipeline"
 			"IgnoreProjector" = "True"
 			"Queue" = "Transparent"
 			"RenderType" = "Transparent"
 			"DisableBatching" = "True"
 		}
 		Pass {
-			Name "Pass"
-			Tags { "LightMode" = "SRPDefaultUnlit" }
 			Stencil {
 				Comp [_StencilComp]
 				Pass [_StencilOpPass]
@@ -41,32 +38,6 @@ Shader "Shapes/Texture ColorDodge" {
 				#pragma fragment frag
 				#pragma multi_compile_fog
 				#pragma multi_compile_instancing
-				#pragma prefer_hlslcc gles
-				#pragma exclude_renderers d3d11_9x
-				#pragma target 2.0
-				#define COLORDODGE
-				#include "../../Core/Texture Core.cginc"
-			ENDHLSL
-		}
-		Pass {
-			Name "DepthOnly"
-			Tags { "LightMode" = "DepthOnly" }
-			Stencil {
-				Comp [_StencilComp]
-				Pass [_StencilOpPass]
-				Ref [_StencilID]
-				ReadMask [_StencilReadMask]
-				WriteMask [_StencilWriteMask]
-			}
-			Cull Off
-			HLSLPROGRAM
-				#pragma vertex vert
-				#pragma fragment frag
-				#pragma multi_compile_fog
-				#pragma multi_compile_instancing
-				#pragma prefer_hlslcc gles
-				#pragma exclude_renderers d3d11_9x
-				#pragma target 2.0
 				#define COLORDODGE
 				#include "../../Core/Texture Core.cginc"
 			ENDHLSL
@@ -87,9 +58,6 @@ Shader "Shapes/Texture ColorDodge" {
 				#pragma fragment frag
 				#pragma multi_compile_fog
 				#pragma multi_compile_instancing
-				#pragma prefer_hlslcc gles
-				#pragma exclude_renderers d3d11_9x
-				#pragma target 2.0
 				#define COLORDODGE
 				#pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
 				#define SCENE_VIEW_PICKING
@@ -112,9 +80,6 @@ Shader "Shapes/Texture ColorDodge" {
 				#pragma fragment frag
 				#pragma multi_compile_fog
 				#pragma multi_compile_instancing
-				#pragma prefer_hlslcc gles
-				#pragma exclude_renderers d3d11_9x
-				#pragma target 2.0
 				#define COLORDODGE
 				#pragma instancing_options assumeuniformscaling nomatrices nolightprobe nolightmap
 				#define SCENE_VIEW_OUTLINE_MASK
