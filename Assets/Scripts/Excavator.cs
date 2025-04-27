@@ -18,7 +18,8 @@ public class Excavator : MonoBehaviour
     [SerializeField] private float acceleration = 2;
     [SerializeField] private float drag = 1;
 
-    [FormerlySerializedAs("mainTool")] [SerializeField] private PlatformEquipment mainEquipment;
+    [FormerlySerializedAs("mainTool")] [SerializeField]
+    private PlatformEquipment mainEquipment;
 
     private int layerMask = 0;
 
@@ -64,11 +65,11 @@ public class Excavator : MonoBehaviour
             speed = 0;
         }
 
-        if (contacts == 0)
-        {
-            // Debug.Log("No contacts");
-            return;
-        }
+        // if (contacts == 0)
+        // {
+        // Debug.Log("No contacts");
+        // return;
+        // }
 
         // Debug.Log(contacts);
 
