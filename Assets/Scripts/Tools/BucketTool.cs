@@ -1,23 +1,15 @@
 using System;
-using System.Collections.Generic;
 using DG.Tweening;
-using R3;
 using UnityEngine;
 
 public class BucketTool : BSBSystemTool
 {
+    private static readonly int Blend = Animator.StringToHash("Blend");
     private bool isReleased;
 
-    private HashSet<EnvElement> elements;
-    private IDisposable scanDisposable;
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Execute();
-        }
-    }
+    [SerializeField] private Animator _animator;
+    [SerializeField] private int capacity;
+    [SerializeField] private int amount;
 
     public override void Execute()
     {
@@ -34,21 +26,27 @@ public class BucketTool : BSBSystemTool
 
         isReleased = !isReleased;
     }
-   
-    private void OnEnable()
+
+    private void SetAmount(int f)
     {
-        scanDisposable?.Dispose();
-        scanDisposable = Observable.Interval(TimeSpan.FromSeconds(1)).Subscribe(Scan);
+        amount = f;
+        _animator.SetFloat(Blend, 1f * amount / capacity);
     }
 
-    private void OnDisable()
+    public void Collect(ICollectible collectible)
     {
-        scanDisposable.Dispose();
-        scanDisposable = null;
-    }
+        switch (collectible)
+        {
+            case Sand sand:
+            {
+                if (amount + sand.amount <= capacity)
+                {
+                    SetAmount(sand.amount + amount);
+                }
 
-    // 扫描可交互物体并更新UI
-    private void Scan(Unit c)
-    {
+                Destroy(sand.gameObject);
+            }
+                break;
+        }
     }
-} 
+}
